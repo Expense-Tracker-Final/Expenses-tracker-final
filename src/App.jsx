@@ -1,4 +1,5 @@
 import About from "./Components/About"
+import Contact from "./Components/Contact"
 import Home from "./Components/Home"
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
       <h1 style={{color:'blue'}}> hello team</h1>
       <Home />
       <About/>
+      <Contact />
     </>
   )
 }
