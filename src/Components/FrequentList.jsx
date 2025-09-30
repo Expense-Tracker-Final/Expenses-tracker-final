@@ -5,8 +5,6 @@ import { expenseService } from "../services/expenseServices";
 import { Link } from "react-router-dom";
 
 function Frequent() {
-  // states declaration
-
   const [frequentState, setFrequentState] = useState({});
   const [newItem, setNewItem] = useState({
     name: "",
@@ -15,7 +13,7 @@ function Frequent() {
     category: "",
   });
 
-  //use effect to handle side effects- goes out to fetch
+  // fetch records on mount
   useEffect(() => {
     const fetchFrequentRecords = async () => {
       try {
@@ -28,7 +26,6 @@ function Frequent() {
     fetchFrequentRecords();
   }, []);
 
-  // on change handling
   const handleChange = (itemName, field, value) => {
     setFrequentState((prev) => {
       const updatedItem = {
@@ -46,7 +43,6 @@ function Frequent() {
     });
   };
 
-  // update data
   const handleUpdate = async (itemName) => {
     try {
       const updatedItem = {
@@ -61,37 +57,27 @@ function Frequent() {
         [itemName]: updatedItem,
       };
 
-      await fetch("http://localhost:7600/frequentRecords", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(updatedData),
-      });
-
+      // here we are updating the whole object since your DB holds it that way
+      await expenseService.updateFrequentRecord("", updatedData);
       setFrequentState(updatedData);
-      alert("Updated successfully!");
     } catch (err) {
       alert("Error updating record");
     }
   };
 
-  //remove data
   const handleRemove = async (itemName) => {
     const { [itemName]: removed, ...rest } = frequentState;
     try {
-      await fetch("http://localhost:7600/frequentRecords", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(rest),
-      });
+      await expenseService.updateFrequentRecord("", rest);
       setFrequentState(rest);
-      alert(`${itemName} removed!`);
     } catch (err) {
       alert("Error removing item");
     }
   };
-  //handle new data
+
   const handleAddNew = async () => {
     if (!newItem.name) return alert("Enter item name");
+
     const record = {
       [newItem.name]: {
         quantity: Number(newItem.quantity),
@@ -100,41 +86,26 @@ function Frequent() {
         category: newItem.category,
       },
     };
+
     try {
       const updatedData = { ...frequentState, ...record };
-      await fetch("http://localhost:7600/frequentRecords", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(updatedData),
-      });
+      await expenseService.updateFrequentRecord("", updatedData);
       setFrequentState(updatedData);
       setNewItem({ name: "", quantity: "", price: "", category: "" });
-      alert("New item added!");
     } catch (err) {
       alert("Error adding new item");
     }
   };
 
   return (
-    //overall container begins here
     <div className="container mt-4">
-      {/* routing link to the actual tracking component */}
       <Link to="/">go back</Link>
-      {/* dont touch the link */}
       <h2>Frequent Records</h2>
 
-      {/* mapping begins here */}
       {Object.entries(frequentState).map(([itemName, itemData]) => (
         <div key={itemName} className="row align-items-center mb-2">
-          {/* item name is here */}
-
           <div className="col-2 fw-bold">{itemName}</div>
-
-          {/* form container begins */}
           <div className="col-2">
-
-
-            {/* input fields begins here */}
             <Input
               label="Quantity"
               value={itemData.quantity}
@@ -152,8 +123,6 @@ function Frequent() {
           </div>
           <div className="col-2">{itemData.category}</div>
           <div className="col-2">
-
-            {/* add and remove buttons begin here */}
             <Button label="Update" onClick={() => handleUpdate(itemName)} />
           </div>
           <div className="col-2">
@@ -161,9 +130,9 @@ function Frequent() {
           </div>
         </div>
       ))}
-{/* prefilled form ends here */}
+
       <hr />
-{/* empty field begins here */}
+
       <h4>Add New Item</h4>
       <div className="row align-items-center mb-2">
         <div className="col-2">
@@ -211,6 +180,34 @@ function Frequent() {
         <div className="col-2">
           <Button label="Add Item" onClick={handleAddNew} />
         </div>
+      </div>
+ <hr />
+      {/* Summary box */}
+     
+      <div className="border p-3 mt-4 row">
+        <h5>All Frequent Items</h5>
+        {Object.entries(frequentState).length === 0 ? (
+          <p>No items yet.</p>
+        ) : (
+          <>
+            <ul className="list-unstyled">
+              {Object.entries(frequentState).map(([itemName, itemData]) => (
+                <li key={itemName} className="mb-2">
+                  <strong>{itemName}</strong> — Price: ₹{itemData.price} |
+                  Total: ₹{itemData.total}
+                </li>
+              ))}
+            </ul>
+            <hr />
+            <p className="fw-bold">
+              Grand Total: ₹
+              {Object.values(frequentState).reduce(
+                (sum, item) => sum + Number(item.total || 0),
+                0
+              )}
+            </p>
+          </>
+        )}
       </div>
     </div>
   );
