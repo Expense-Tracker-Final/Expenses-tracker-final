@@ -22,6 +22,7 @@ function App() {
 )
   return (
     <>
+    <h1> expense manager</h1>
       <RouterProvider router={router} />
     </>
   )
