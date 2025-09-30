@@ -61,7 +61,7 @@ function FrequentList() {
       await expenseService.updateFrequentRecord("", updatedData);
       setFrequentState(updatedData);
     } catch (err) {
-      alert("Error updating record");
+      alert("Error updating record", err);
     }
   };
 
@@ -71,7 +71,7 @@ function FrequentList() {
       await expenseService.updateFrequentRecord("", rest);
       setFrequentState(rest);
     } catch (err) {
-      alert("Error removing item");
+      alert("Error removing item", err);
     }
   };
 
@@ -93,7 +93,7 @@ function FrequentList() {
       setFrequentState(updatedData);
       setNewItem({ name: "", quantity: "", price: "", category: "" });
     } catch (err) {
-      alert("Error adding new item");
+      alert("Error adding new item", err);
     }
   };
 
@@ -181,9 +181,9 @@ function FrequentList() {
           <Button label="Add Item" onClick={handleAddNew} />
         </div>
       </div>
- <hr />
+      <hr />
       {/* Summary box */}
-     
+
       <div className="border p-3 mt-4 row">
         <h5>All Frequent Items</h5>
         {Object.entries(frequentState).length === 0 ? (
