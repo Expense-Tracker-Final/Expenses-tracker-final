@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { expenseService } from "../services/expenseServices";
-import Input from "../common/ui/Input";
-import Button from "../common/ui/Button";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
+import Input from "../common/Input";
+import Button from "../common/Button";
 
 function ActualTracker() {
   const [frequentState, setFrequentState] = useState({});

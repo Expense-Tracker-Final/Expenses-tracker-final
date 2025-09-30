@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Input from "../common/ui/Input";
-import Button from "../common/ui/Button";
 import { expenseService } from "../services/expenseServices";
 import { Link } from "react-router-dom";
+import Input from "../common/Input";
+import Button from "../common/Button";
 
-function Frequent() {
+function FrequentList() {
   const [frequentState, setFrequentState] = useState({});
   const [newItem, setNewItem] = useState({
     name: "",
@@ -213,4 +213,4 @@ function Frequent() {
   );
 }
 
-export default Frequent;
+export default FrequentList;
