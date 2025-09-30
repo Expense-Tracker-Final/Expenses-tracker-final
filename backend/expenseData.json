@@ -1,0 +1,80 @@
+{
+  "frequentRecords": {
+    "lunch": {
+      "quantity": "5",
+      "price": 50,
+      "total": 250,
+      "category": "food"
+    },
+    "egg": {
+      "quantity": 10,
+      "price": 7,
+      "total": 70,
+      "category": "food"
+    },
+    "newspaper": {
+      "quantity": 1,
+      "price": 5,
+      "total": 5,
+      "category": "entertainment"
+    },
+    "milk": {
+      "quantity": 1,
+      "price": 30,
+      "total": 30,
+      "category": "food"
+    },
+    "tea": {
+      "quantity": 2,
+      "price": 15,
+      "total": 30,
+      "category": "food"
+    }
+  },
+  "dailyRecords": {
+    "29/09/2025": {
+      "tea": {
+        "quantity": 45,
+        "price": 10,
+        "total": 450,
+        "category": "food"
+      },
+      "bus": {
+        "quantity": 3,
+        "price": 10,
+        "total": 30,
+        "category": "travel"
+      },
+      "lunch": {
+        "quantity": 3,
+        "price": 50,
+        "total": 150,
+        "category": "food"
+      },
+      "coffee": {
+        "quantity": 1,
+        "price": 20,
+        "total": 20,
+        "category": "food"
+      },
+      "samosa": {
+        "quantity": 1,
+        "price": 15,
+        "total": 15,
+        "category": "food"
+      },
+      "cinema": {
+        "quantity": 1,
+        "price": 220,
+        "total": 220,
+        "category": "entertainment"
+      },
+      "newspaper": {
+        "quantity": 2,
+        "price": 15,
+        "total": 30,
+        "category": "entertainment"
+      }
+    }
+  }
+}
