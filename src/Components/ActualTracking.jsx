@@ -55,10 +55,10 @@ function ActualTracker() {
     try {
       const updatedToday = { ...(dailyState[today] || {}), ...record };
       const updatedData = { ...dailyState, [today]: updatedToday };
-      await axios.put("http://localhost:7600/dailyRecords", updatedData);
+      await axios.put("http://localhost:8000/dailyRecords", updatedData);
       setDailyState(updatedData);
     } catch (err) {
-      alert("Error adding record");
+      alert("Error adding record",err);
     }
   };
 
@@ -86,7 +86,7 @@ function ActualTracker() {
       setDailyState(updatedData);
       setNewItem({ name: "", quantity: "", price: "", category: "" });
     } catch (err) {
-      alert("Error adding record");
+      alert("Error adding record",err);
     }
   };
 
