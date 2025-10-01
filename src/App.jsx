@@ -1,5 +1,5 @@
-// import { createBrowserRouter, RouterProvider } from "react-router-dom"
-// import ActualTracking from "./Components/ActualTracking"
+import { createBrowserRouter, RouterProvider } from "react-router-dom"
+import ActualTracking from "./Components/ActualTracking"
 import FrequentList from "./Components/FrequentList"
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -10,23 +10,21 @@ import Navbar from "../src/common/Navbar"
 
 
 function App() {
-//  const router=createBrowserRouter([
-//   {
-//     path:"/",
-//     element:<ActualTracking/>
+ const router=createBrowserRouter([
+  {
+    path:"/",
+    element:<ActualTracking/>
 
-//   },
-//   {
-//     path:"/frequent",
-//     element:<FrequentList/>
-//   }]
-// )
+  },
+  {
+    path:"/frequent",
+    element:<FrequentList/>
+  }]
+)
   return (
     <>
-    {/* <h1> expense manager</h1>
-      <RouterProvider router={router} /> */}
       <Navbar />
-      {/* <FrequentList /> */}
+      <RouterProvider router={router} />
     </>
   )
 
