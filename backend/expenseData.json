@@ -1,11 +1,5 @@
 {
   "frequentRecords": {
-    "lunch": {
-      "quantity": "5",
-      "price": 50,
-      "total": 250,
-      "category": "food"
-    },
     "egg": {
       "quantity": 10,
       "price": 7,
@@ -18,17 +12,11 @@
       "total": 5,
       "category": "entertainment"
     },
-    "milk": {
-      "quantity": 1,
-      "price": 30,
-      "total": 30,
-      "category": "food"
-    },
-    "tea": {
+    "bus": {
       "quantity": 2,
       "price": 15,
       "total": 30,
-      "category": "food"
+      "category": "travel"
     }
   },
   "dailyRecords": {
@@ -74,6 +62,74 @@
         "price": 15,
         "total": 30,
         "category": "entertainment"
+      }
+    },
+    "30/09/2025": {
+      "milk": {
+        "quantity": 1,
+        "price": 30,
+        "total": 30,
+        "category": "food"
+      },
+      "tea": {
+        "quantity": 2,
+        "price": 15,
+        "total": 30,
+        "category": "food"
+      }
+    },
+    "02/10/2025": {
+      "egg": {
+        "quantity": 10,
+        "price": 7,
+        "total": 70,
+        "category": "food"
+      },
+      "bus": {
+        "quantity": 2,
+        "price": 15,
+        "total": 30,
+        "category": "travel"
+      },
+      "tea": {
+        "quantity": 6,
+        "price": 20,
+        "total": 120,
+        "category": "food"
+      },
+      "bus_1": {
+        "quantity": 1,
+        "price": 22,
+        "total": 22,
+        "category": "travel"
+      }
+    },
+    "dailyRecords": {
+      "02/10/2025": {
+        "egg": {
+          "quantity": 10,
+          "price": 7,
+          "total": 70,
+          "category": "food"
+        },
+        "bus": {
+          "quantity": 2,
+          "price": 15,
+          "total": 30,
+          "category": "travel"
+        },
+        "tea": {
+          "quantity": 6,
+          "price": 20,
+          "total": 120,
+          "category": "food"
+        },
+        "bus_1": {
+          "quantity": 1,
+          "price": 22,
+          "total": 22,
+          "category": "travel"
+        }
       }
     }
   }

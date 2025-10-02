@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { expenseService } from "../services/expenseServices";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Input from "../common/Input";
 import Button from "../common/Button";
+import Input from "../common/Input";
+import { expenseService } from "../services/expenseServices";
 
 function FrequentList() {
   const [frequentState, setFrequentState] = useState({});
@@ -58,6 +58,7 @@ function FrequentList() {
       };
 
       // here we are updating the whole object since your DB holds it that way
+
       await expenseService.updateFrequentRecord("", updatedData);
       setFrequentState(updatedData);
     } catch (err) {
@@ -181,9 +182,9 @@ function FrequentList() {
           <Button label="Add Item" onClick={handleAddNew} />
         </div>
       </div>
- <hr />
+      <hr />
       {/* Summary box */}
-     
+
       <div className="border p-3 mt-4 row">
         <h5>All Frequent Items</h5>
         {Object.entries(frequentState).length === 0 ? (
