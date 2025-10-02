@@ -115,8 +115,8 @@ function FrequentList() {
           <h4 className="mb-0">Add New Item</h4>
         </div>
         <div className="card-body">
-          <div className="row align-items-center">
-            <div className="col-md-3 mb-2">
+          <div className="row align-items-end g-2">
+            <div className="col-md-3">
               <Input
                 label="Name"
                 value={newItem.name}
@@ -125,7 +125,7 @@ function FrequentList() {
                 }
               />
             </div>
-            <div className="col-md-2 mb-2">
+            <div className="col-md-2">
               <Input
                 label="Quantity"
                 value={newItem.quantity}
@@ -134,7 +134,7 @@ function FrequentList() {
                 }
               />
             </div>
-            <div className="col-md-2 mb-2">
+            <div className="col-md-2">
               <Input
                 label="Price"
                 value={newItem.price}
@@ -143,8 +143,10 @@ function FrequentList() {
                 }
               />
             </div>
-            <div className="col-md-3 mb-2">
+            <div className="col-md-3">
+              <label htmlFor="categoryDropdown" className="form-label">Choose</label>
               <select
+                id="categoryDropdown"
                 className="form-control"
                 value={newItem.category}
                 onChange={(e) =>
@@ -158,8 +160,8 @@ function FrequentList() {
                 <option value="others">Others</option>
               </select>
             </div>
-            <div className="col-md-2 mb-2 d-flex justify-content-end">
-              <Button label="Add Item" onClick={handleAddNew} className="btn" style={{ backgroundColor: "#456882", color: "#fff", border: "2px solid #ffffff", borderRadius: "8px" }} />
+            <div className="col-md-2">
+              <Button label="Add Item" onClick={handleAddNew} className="btn w-100" style={{ backgroundColor: "#456882", color: "#fff", border: "2px solid #ffffff", borderRadius: "8px" }} />
             </div>
           </div>
         </div>
