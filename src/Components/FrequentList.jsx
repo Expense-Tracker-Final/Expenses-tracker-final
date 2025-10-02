@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { expenseService } from "../services/expenseServices";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Input from "../common/Input";
 import Button from "../common/Button";
+import '../App.css';
 
 function FrequentList() {
   const [frequentState, setFrequentState] = useState({});
@@ -12,6 +13,11 @@ function FrequentList() {
     price: "",
     category: "",
   });
+    const navigate = useNavigate();
+
+    const handleGoBack = () => {
+      navigate("/");
+    };
 
   // fetch records on mount
   useEffect(() => {
@@ -98,116 +104,149 @@ function FrequentList() {
   };
 
   return (
-    <div className="container mt-4">
-      <Link to="/">go back</Link>
-      <h2>Frequent Records</h2>
+  <div className="container rounded shadow-lg py-4 px-3 mt-4" style={{ backgroundColor: "#f8f8f821" }}>
+      <div className="d-flex justify-content-between align-items-center mb-3">
+        <h2 className="frequent-title mb-0">Frequent Expense Tracker</h2>
+        <Button label="Go Back" onClick={handleGoBack} className="btn" style={{ backgroundColor: "#456882", color: "#fff", border: "2px solid #ffffff", borderRadius: "8px" }} />
+      </div>
 
-      {Object.entries(frequentState).map(([itemName, itemData]) => (
-        <div key={itemName} className="row align-items-center mb-2">
-          <div className="col-2 fw-bold">{itemName}</div>
-          <div className="col-2">
-            <Input
-              label="Quantity"
-              value={itemData.quantity}
-              onChange={(e) =>
-                handleChange(itemName, "quantity", e.target.value)
-              }
-            />
+      <div className="card mb-4 frequent-card">
+        <div className="card-header text-white frequent-card-header" style={{ backgroundColor: "#456882" }}>
+          <h4 className="mb-0">Add New Item</h4>
+        </div>
+        <div className="card-body">
+          <div className="row align-items-center">
+            <div className="col-md-3 mb-2">
+              <Input
+                label="Name"
+                value={newItem.name}
+                onChange={(e) =>
+                  setNewItem((prev) => ({ ...prev, name: e.target.value }))
+                }
+              />
+            </div>
+            <div className="col-md-2 mb-2">
+              <Input
+                label="Quantity"
+                value={newItem.quantity}
+                onChange={(e) =>
+                  setNewItem((prev) => ({ ...prev, quantity: e.target.value }))
+                }
+              />
+            </div>
+            <div className="col-md-2 mb-2">
+              <Input
+                label="Price"
+                value={newItem.price}
+                onChange={(e) =>
+                  setNewItem((prev) => ({ ...prev, price: e.target.value }))
+                }
+              />
+            </div>
+            <div className="col-md-3 mb-2">
+              <select
+                className="form-control"
+                value={newItem.category}
+                onChange={(e) =>
+                  setNewItem((prev) => ({ ...prev, category: e.target.value }))
+                }
+              >
+                <option value="">Category</option>
+                <option value="food">Food & Beverage</option>
+                <option value="travel">Travel</option>
+                <option value="entertainment">Entertainment</option>
+                <option value="others">Others</option>
+              </select>
+            </div>
+            <div className="col-md-2 mb-2 d-flex justify-content-end">
+              <Button label="Add Item" onClick={handleAddNew} className="btn" style={{ backgroundColor: "#456882", color: "#fff", border: "2px solid #ffffff", borderRadius: "8px" }} />
+            </div>
           </div>
-          <div className="col-2">
-            <Input
-              label="Price"
-              value={itemData.price}
-              onChange={(e) => handleChange(itemName, "price", e.target.value)}
-            />
-          </div>
-          <div className="col-2">{itemData.category}</div>
-          <div className="col-2">
-            <Button label="Update" onClick={() => handleUpdate(itemName)} />
-          </div>
-          <div className="col-2">
-            <Button label="Remove" onClick={() => handleRemove(itemName)} />
-          </div>
-        </div>
-      ))}
-
-      <hr />
-
-      <h4>Add New Item</h4>
-      <div className="row align-items-center mb-2">
-        <div className="col-2">
-          <Input
-            label="Name"
-            value={newItem.name}
-            onChange={(e) =>
-              setNewItem((prev) => ({ ...prev, name: e.target.value }))
-            }
-          />
-        </div>
-        <div className="col-2">
-          <Input
-            label="Quantity"
-            value={newItem.quantity}
-            onChange={(e) =>
-              setNewItem((prev) => ({ ...prev, quantity: e.target.value }))
-            }
-          />
-        </div>
-        <div className="col-2">
-          <Input
-            label="Price"
-            value={newItem.price}
-            onChange={(e) =>
-              setNewItem((prev) => ({ ...prev, price: e.target.value }))
-            }
-          />
-        </div>
-        <div className="col-2">
-          <select
-            className="form-control"
-            value={newItem.category}
-            onChange={(e) =>
-              setNewItem((prev) => ({ ...prev, category: e.target.value }))
-            }
-          >
-            <option value="">Category</option>
-            <option value="food">Food & Beverage</option>
-            <option value="travel">Travel</option>
-            <option value="entertainment">Entertainment</option>
-            <option value="others">Others</option>
-          </select>
-        </div>
-        <div className="col-2">
-          <Button label="Add Item" onClick={handleAddNew} />
         </div>
       </div>
-      <hr />
-      {/* Summary box */}
 
-      <div className="border p-3 mt-4 row">
-        <h5>All Frequent Items</h5>
-        {Object.entries(frequentState).length === 0 ? (
-          <p>No items yet.</p>
-        ) : (
-          <>
-            <ul className="list-unstyled">
+      <div className="card frequent-card mb-4">
+        <div className="card-header text-white frequent-card-header" style={{ backgroundColor: "#456882" }}>
+          <h4 className="mb-0">Frequent Items</h4>
+        </div>
+        <div className="card-body">
+          {Object.entries(frequentState).length === 0 ? (
+            <p className="text-muted">No items yet.</p>
+          ) : (
+            <div className="table-responsive">
+              <table className="table table-striped table-hover align-middle frequent-table" >
+                <thead className="table-dark">
+                  <tr>
+                    <th>Name</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Category</th>
+                    <th>Total</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {Object.entries(frequentState).map(([itemName, itemData]) => (
+                    <tr key={itemName}>
+                      <td className="fw-bold">{itemName}</td>
+                      <td>
+                        <Input
+                          label="Quantity"
+                          value={itemData.quantity}
+                          onChange={(e) =>
+                            handleChange(itemName, "quantity", e.target.value)
+                          }
+                        />
+                      </td>
+                      <td>
+                        <Input
+                          label="Price"
+                          value={itemData.price}
+                          onChange={(e) => handleChange(itemName, "price", e.target.value)}
+                        />
+                      </td>
+                      <td>{itemData.category}</td>
+                      <td className="fw-bold text-success">₹{itemData.total}</td>
+                      <td>
+                        <div className="d-flex gap-2">
+                          <Button label="Update" onClick={() => handleUpdate(itemName)} className="btn" style={{ backgroundColor: "#456882", color: "#fff", border: "2px solid #ffffff", borderRadius: "8px" }} />
+                          <Button label="Remove" onClick={() => handleRemove(itemName)} className="btn btn-danger btn-sm" />
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </div>
+      </div>
+
+      <div className="card frequent-card mb-4">
+        <div className="card-header text-white frequent-card-header" style={{ backgroundColor: "#456882" }}>
+          <h5 className="mb-0">Summary</h5>
+        </div>
+        <div className="card-body">
+          {Object.entries(frequentState).length === 0 ? (
+            <p className="text-muted">No items yet.</p>
+          ) : (
+            <ul className="list-group mb-3">
               {Object.entries(frequentState).map(([itemName, itemData]) => (
-                <li key={itemName} className="mb-2">
-                  <strong>{itemName}</strong> — Price: ₹{itemData.price} |
-                  Total: ₹{itemData.total}
+                <li key={itemName} className="list-group-item d-flex justify-content-between align-items-center">
+                  <div>
+                    <strong>{itemName}</strong> <span className="badge bg-secondary ms-2">{itemData.category}</span>
+                  </div>
+                  <div>
+                    Qty: <span className="fw-bold">{itemData.quantity}</span> | Price: <span className="fw-bold">₹{itemData.price}</span> | Total: <span className="fw-bold text-success">₹{itemData.total}</span>
+                  </div>
                 </li>
               ))}
             </ul>
-            <hr />
-            <p className="fw-bold">
-              Grand Total: ₹
-              {Object.values(frequentState).reduce(
-                (sum, item) => sum + Number(item.total || 0),
-                0
-              )}
-            </p>
-          </>
-        )}
+          )}
+          <p className="fw-bold fs-4 mb-0">
+            Grand Total: <span className="text-primary">₹{Object.values(frequentState).reduce((sum, item) => sum + Number(item.total || 0), 0)}</span>
+          </p>
+        </div>
       </div>
     </div>
   );
