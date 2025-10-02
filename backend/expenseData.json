@@ -11,6 +11,12 @@
       "price": 700,
       "total": 700,
       "category": "others"
+    },
+    "tea": {
+      "quantity": 2,
+      "price": 20,
+      "total": 40,
+      "category": "food"
     }
   },
   "dailyRecords": {
@@ -69,6 +75,32 @@
         "quantity": 10,
         "price": 7,
         "total": 70,
+        "category": "food"
+      }
+    },
+    "02/10/2025": {
+      "fruit": {
+        "quantity": 1,
+        "price": 100,
+        "total": 100,
+        "category": "food"
+      },
+      "t-shirt": {
+        "quantity": 1,
+        "price": 700,
+        "total": 700,
+        "category": "others"
+      },
+      "meal": {
+        "quantity": 1,
+        "price": 150,
+        "total": 150,
+        "category": "food"
+      },
+      "juice": {
+        "quantity": 2,
+        "price": 40,
+        "total": 80,
         "category": "food"
       }
     }
