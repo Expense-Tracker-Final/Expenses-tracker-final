@@ -75,6 +75,7 @@ const Report = () => {
       </div>
     </div>
   );
+  
 };
 
 export default Report;
