@@ -16,7 +16,7 @@ function Edit() {
   setLoading(true);
   try {
     const allDailyRecords = await expenseService.getDailyRecords();
-    const records = allDailyRecords.data?.[date] || {}; // ✅ remove .dailyRecords
+    const records = allDailyRecords.data?.[date] || {}; 
     setDailyItems(records);
 
     if (Object.keys(records).length === 0) {
