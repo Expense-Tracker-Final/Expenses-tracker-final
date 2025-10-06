@@ -122,6 +122,12 @@
         "price": 50000,
         "total": 50000,
         "category": "entertainment"
+      },
+      "chocolate": {
+        "quantity": 2,
+        "price": 100,
+        "total": 200,
+        "category": "food"
       }
     },
     "01/10/2025": {
