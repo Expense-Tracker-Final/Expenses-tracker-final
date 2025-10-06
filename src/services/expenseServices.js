@@ -1,8 +1,8 @@
 import axios from "axios";
 
 export class expenseService {
-  static FREQUENT_URL = "http://localhost:8000/frequentRecords";
-  static DAILY_URL = "http://localhost:8000/dailyRecords";
+  static FREQUENT_URL = "http://localhost:9000/frequentRecords";
+  static DAILY_URL = "http://localhost:9000/dailyRecords";
 
   static getFrequentRecords() {
     return axios.get(this.FREQUENT_URL);
