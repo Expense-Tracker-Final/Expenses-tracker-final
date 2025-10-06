@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ActualTracking from "./Components/ActualTracking";
+import Home from "./common/Home";
 import FrequentList from "./Components/FrequentList";
 import Dashboard from "./Components/dashboard/Dashboard";
 import Report from "./Components/report/Report";
@@ -20,7 +21,8 @@ function App() {
       <Navbar />
       <main style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
         <Routes>
-  <Route path="/" element={<ActualTracking />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/budget" element={<ActualTracking />} />
           <Route path="/frequent" element={<FrequentList />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/report" element={<Report />} />

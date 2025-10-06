@@ -35,7 +35,7 @@ const Navbar = () => {
               <button
                 type="button"
                 className="btn btn-outline-light mx-2 navbar-font"
-                onClick={() => navigate('/')}
+                onClick={() => navigate('/budget')}
               >
                 Budget
               </button>

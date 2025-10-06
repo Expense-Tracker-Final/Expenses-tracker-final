@@ -24,7 +24,8 @@ footer {
 }
 /* FrequentList custom styles */
 .frequent-bg {
-	background: #fff;
+	/* keep transparent but define min-height to avoid empty ruleset */
+	min-height: 1px;
 }
 .frequent-title {
 	font-family: 'Montserrat', sans-serif;

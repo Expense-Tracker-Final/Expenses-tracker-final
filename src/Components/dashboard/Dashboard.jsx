@@ -126,7 +126,7 @@ function Dashboard() {
               <p className="text-muted small mt-2">
                 Move to your budget page to add your budget and track spending effectively.
               </p>
-              <button className="btn btn-primary fw-bold mt-3" onClick={() => navigate('/')}>Move to Budget →</button>
+              <button className="btn btn-primary fw-bold mt-3" onClick={() => navigate('/budget')}>Move to Budget →</button>
             </div>
           </div>
         </div>

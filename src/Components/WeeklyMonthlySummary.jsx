@@ -222,7 +222,7 @@ function WeeklyMonthlySummary() {
           <h5 className="mb-0">Navigate</h5>
         </div>
         <div className="card-body d-flex gap-2 flex-wrap">
-          <Link to="/">
+          <Link to="/budget">
             <Button label="Actual Tracking" className="btn" style={{ backgroundColor: "#456882", color: "#fff", border: "2px solid #ffffff", borderRadius: "8px" }} />
           </Link>
           <Link to="/frequent">

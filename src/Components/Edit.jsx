@@ -69,7 +69,7 @@ function Edit() {
     <div className="container rounded shadow-lg py-4 px-3 mt-4 frequent-bg">
       <div className="d-flex justify-content-between align-items-center mb-3">
         <h2 className="frequent-title mb-0">Edit Daily Expenses</h2>
-        <Link to="/">
+  <Link to="/budget">
           <button className="btn" style={{ backgroundColor: "#456882", color: "#fff", border: "2px solid #ffffff", borderRadius: "8px" }}>Back</button>
         </Link>
       </div>
