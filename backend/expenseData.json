@@ -104,6 +104,7 @@
         "category": "food"
       }
     },
+
     "06/10/2025": {
       "apple": {
         "quantity": 5,
@@ -130,6 +131,8 @@
         "category": "food"
       }
     },
+
+    "06/10/2025": {},
     "01/10/2025": {
       "income": {
         "quantity": 1,
