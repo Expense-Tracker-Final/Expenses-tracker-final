@@ -1,9 +1,31 @@
 body {
 	background-color: #D2C1B6 !important;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+}
+
+#root {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	height: 100vh;
+}
+
+main {
+	flex: 1 0 auto;
+	display: flex;
+	flex-direction: column;
+}
+
+footer {
+	width: 100%;
 }
 /* FrequentList custom styles */
 .frequent-bg {
-	background: #fff;
+	/* keep transparent but define min-height to avoid empty ruleset */
+	min-height: 1px;
 }
 .frequent-title {
 	font-family: 'Montserrat', sans-serif;
