@@ -1,23 +1,75 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer } from "recharts";
 import Navbar from "../../common/Navbar";
 import { useNavigate } from "react-router-dom";
+import { expenseService } from "../../services/expenseServices";
 
 function Dashboard() {
-  // --- Static data ---
-  const totalSpent = 500;
-  const topCategory = "Food & Beverage";
-  const numberOfCategories = 4;
-
-  // Bar chart data
-  const categoryData = [
-    { name: "Food", total: 200 },
-    { name: "Travel", total: 120 },
-    { name: "Entertainment", total: 150 },
-    { name: "Others", total: 30 },
-  ];
-
+  const [totalSpent, setTotalSpent] = useState(0);
+  const [topCategory, setTopCategory] = useState("-");
+  const [numberOfCategories, setNumberOfCategories] = useState(0);
+  const [categoryData, setCategoryData] = useState([]);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    async function fetchAndCalculate() {
+      try {
+        const res = await expenseService.getDailyRecords();
+        const data = res.data;
+        const today = new Date();
+        const monthStart = new Date(today.getFullYear(), today.getMonth(), 1);
+        const monthEnd = today;
+
+        let total = 0;
+        const categoryTotals = {};
+        const allCategoriesSet = new Set();
+
+        Object.entries(data).forEach(([dateStr, items]) => {
+          const [day, month, year] = dateStr.split("/").map(Number);
+          const recordDate = new Date(year, month - 1, day);
+          // For current month spent and chart
+          if (recordDate >= monthStart && recordDate <= monthEnd) {
+            Object.values(items).forEach((item) => {
+              if (item.category !== "income") {
+                total += item.total;
+                categoryTotals[item.category] = (categoryTotals[item.category] || 0) + item.total;
+              }
+            });
+          }
+          // For all-time category count
+          Object.values(items).forEach((item) => {
+            if (item.category && item.category !== "income") {
+              allCategoriesSet.add(item.category);
+            }
+          });
+        });
+
+        setTotalSpent(total);
+
+        // Find top category
+        let topCat = "-";
+        let topCatTotal = 0;
+        Object.entries(categoryTotals).forEach(([cat, catTotal]) => {
+          if (catTotal > topCatTotal) {
+            topCat = cat;
+            topCatTotal = catTotal;
+          }
+        });
+        setTopCategory(topCat);
+        setNumberOfCategories(allCategoriesSet.size);
+
+        // Prepare data for chart
+        const chartData = Object.entries(categoryTotals).map(([cat, catTotal]) => ({ name: cat, total: catTotal }));
+        setCategoryData(chartData);
+      } catch {
+        setTotalSpent(0);
+        setTopCategory("-");
+        setNumberOfCategories(0);
+        setCategoryData([]);
+      }
+    }
+    fetchAndCalculate();
+  }, []);
 
   return (
     <>
@@ -26,7 +78,7 @@ function Dashboard() {
         <div className="row g-3 mb-4">
           <div className="col-md-4">
             <div className="card shadow-sm text-center p-4" style={{ height: "180px" }}>
-              <h6>Total Spent</h6>
+              <h6>Total Spent (This Month)</h6>
               <h2 className="fw-bold text-success mt-3">₹{totalSpent}</h2>
             </div>
           </div>

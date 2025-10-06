@@ -8,6 +8,10 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import Navbar from "./common/Navbar"; // <-- fixed import path
 import Footer from "./common/Footer"; 
+import DailySummary from "./Components/DailySummary";
+import Edit from "./Components/Edit";
+import WeeklyMonthlySummary from "./Components/WeeklyMonthlySummary";
+import MonthlySavings from "./Components/MonthlySavings";
 
 
 function App() {
@@ -18,7 +22,11 @@ function App() {
         <Route path="/" element={<ActualTracking />} />
         <Route path="/frequent" element={<FrequentList />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/report" element={<Report />} /> 
+        <Route path="/report" element={<Report />} />
+        <Route path="/daily" element={<DailySummary date={new Date().toLocaleDateString('en-GB')} />} />
+        <Route path="/edit" element={<Edit />} />
+        <Route path="/weeklyMonthy" element={<WeeklyMonthlySummary />} />
+        <Route path="/savings" element={<MonthlySavings />} />
       </Routes>
       <Footer />
     </BrowserRouter>
