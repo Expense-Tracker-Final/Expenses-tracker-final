@@ -159,7 +159,7 @@ function WeeklyMonthlySummary() {
 
       {/* Permanent Income & Balance for current month */}
       <div className="card mb-4 frequent-card">
-        <div className="card-header text-white frequent-card-header" style={{ backgroundColor: "#28a745" }}>
+        <div className="card-header text-white frequent-card-header" style={{ backgroundColor: "#456882" }}>
           <h4 className="mb-0">Current Month Overview</h4>
         </div>
         <div className="card-body">
@@ -233,9 +233,6 @@ function WeeklyMonthlySummary() {
           </Link>
           <Link to="/edit">
             <Button label="Edit" className="btn" style={{ backgroundColor: "#456882", color: "#fff", border: "2px solid #ffffff", borderRadius: "8px" }} />
-          </Link>
-          <Link to="/weeklyMonthy">
-            <Button label="Weekly/Monthly Summary" className="btn" style={{ backgroundColor: "#456882", color: "#fff", border: "2px solid #ffffff", borderRadius: "8px" }} />
           </Link>
           <Link to="/savings">
             <Button label="Savings" className="btn" style={{ backgroundColor: "#456882", color: "#fff", border: "2px solid #ffffff", borderRadius: "8px" }} />
