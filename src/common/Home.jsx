@@ -23,7 +23,7 @@ const Home = () => {
           className="frequent-title"
           style={{ fontSize: "3rem", lineHeight: 1.05, marginBottom: "0.6rem" }}
         >
-          Take control of your finances
+          Take control of your finance
         </h1>
         <p className="lead text-muted mb-4" style={{ fontSize: "1.125rem" }}>
           Track expenses, monitor budgets and get insights — all in one simple app.
